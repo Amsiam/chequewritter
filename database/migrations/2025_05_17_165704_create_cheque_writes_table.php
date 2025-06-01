@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('cheque_id')->constrained()->cascadeOnDelete();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('payee');
-            $table->integer('amount');
+            $table->float('amount', 2);
             $table->date('date');
             $table->timestamps();
         });

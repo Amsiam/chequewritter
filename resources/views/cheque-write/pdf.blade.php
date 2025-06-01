@@ -39,7 +39,7 @@
             </div>
             <div>
                 <div style="margin-left:0.8in;padding-top:0.2in">
-                    **{{ number_format($chequeWrite->amount) }}**
+                    **{{ number_format($chequeWrite->amount,2) }}**
                 </div>
             </div>
         </div>
