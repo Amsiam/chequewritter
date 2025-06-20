@@ -6,12 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class ChequeWrite extends Model
 {
-    protected $fillable = [
-        'cheque_id',
-        'amount',
-        'payee',
-        'date',
-        'user_id',
+    protected $guarded = [
+        'id'
     ];
 
     public function cheque()
@@ -21,6 +17,11 @@ class ChequeWrite extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function payee()
+    {
+        return $this->belongsTo(Beneficiary::class, 'beneficiary_id')->where('user_id', auth()?->user()?->id);
     }
     public function bank()
     {

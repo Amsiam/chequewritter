@@ -45,9 +45,17 @@ class ChequeWriteResource extends Resource
                     ->getSearchResultsUsing(fn(string $search, Get $get): array => Cheque::where('cheque_number', 'like', "%{$search}%")->where('bank_id', $get('bank_id'))->limit(50)->pluck('cheque_number', 'id')->toArray())
                     ->getOptionLabelsUsing(fn(array $value, Get $get): array => Cheque::where('id', $value)->where('bank_id', $get('bank_id'))->pluck('cheque_number', 'id')->toArray())
                     ->required(),
-                Forms\Components\TextInput::make('payee')
+                Forms\Components\Select::make('benificiary_id')
+                    ->relationship('payee', 'name')
+                    ->label('Payee')
+                    ->searchable()
                     ->required()
-                    ->maxLength(255),
+                    ->preload()
+                    ->createOptionForm([
+                        Forms\Components\TextInput::make('name')
+                    ])->createOptionUsing(function (array $data): int {
+                        return auth()->user()->beneficiaries()->create($data)->getKey();
+                    }),
                 Forms\Components\TextInput::make('amount')
                     ->required()
                     ->numeric(),
