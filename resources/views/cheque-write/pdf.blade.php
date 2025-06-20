@@ -35,7 +35,7 @@
         <div style="margin-top:0.09in;display:flex">
             <div style="margin-left:0.5in;width:4.4in;line-height: .9cm;">
                 <span style="display:inline-block;width: 1in"> </span>
-                **{{ ucfirst(\Number::spell($chequeWrite->amount)) }} taka only**
+                **{{ ucfirst(Str::replace('cent', 'paisa', number_to_word("$chequeWrite->amount", 'en'))) }} only**
             </div>
             <div>
                 <div style="margin-left:0.8in;padding-top:0.2in">

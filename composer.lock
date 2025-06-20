@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2bfbae93154e046fb07edce178ecaf83",
+    "content-hash": "c2b77bed473022bcd1503b61245b8c2d",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -5266,6 +5266,56 @@
                 }
             ],
             "time": "2025-02-25T09:09:36+00:00"
+        },
+        {
+            "name": "s1k3/bangla-number-to-word",
+            "version": "1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/s1k3/laravel_currency_to_word.git",
+                "reference": "c5c9cae71973d3b37c33559590636bb4d7b4024d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/s1k3/laravel_currency_to_word/zipball/c5c9cae71973d3b37c33559590636bb4d7b4024d",
+                "reference": "c5c9cae71973d3b37c33559590636bb4d7b4024d",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "S1K3\\Bangla\\Number\\To\\Word\\NumberToWordServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helper/helper.php"
+                ],
+                "psr-4": {
+                    "S1K3\\Bangla\\Number\\To\\Word\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Robin Khan",
+                    "email": "sk118420@gmail.com"
+                }
+            ],
+            "description": "Laravel Package to convert number to bangla currency works with both english and bangla",
+            "support": {
+                "issues": "https://github.com/s1k3/laravel_currency_to_word/issues",
+                "source": "https://github.com/s1k3/laravel_currency_to_word/tree/1.0.4"
+            },
+            "time": "2022-02-21T11:39:07+00:00"
         },
         {
             "name": "sabberworm/php-css-parser",
