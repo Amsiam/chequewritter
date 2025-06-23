@@ -42,9 +42,10 @@ Route::get('/cheque-write/pdf/{id}', function ($id) {
         ->margins(0, 0, 0, 0)
         ->orientation(Orientation::Landscape);
 
-    $pdf = LaravelMpdf::loadView('cheque-write.pdf', [
-        'chequeWrite' => \App\Models\ChequeWrite::findOrFail($id),
-    ]);
+    // $pdf = LaravelMpdf::loadView('cheque-write.pdf', [
+    //     'chequeWrite' => \App\Models\ChequeWrite::findOrFail($id),
+    //     'settings' => $settings,
+    // ]);
 
     return $pdf->stream('cheque-write.pdf');
 })->name('cheque-write.pdf');

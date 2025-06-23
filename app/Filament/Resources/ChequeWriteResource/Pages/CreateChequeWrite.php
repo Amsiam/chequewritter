@@ -29,4 +29,9 @@ class CreateChequeWrite extends CreateRecord
 
         return $data;
     }
+
+    protected function getRedirectUrl(): string
+    {
+        return route('cheque-write.pdf', $this->getRecord()->id);
+    }
 }

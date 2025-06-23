@@ -2,7 +2,7 @@
 
 return [
     'mode'                     => '',
-    'format'                   => [190.5, 88.9],
+    'format'                   => 'A4',
     'default_font_size'        => '12',
     'default_font'             => 'sans-serif',
     'margin_left'              => 0,

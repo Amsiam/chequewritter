@@ -27,16 +27,18 @@ class ChequeResource extends Resource
     {
         return $form
             ->schema([
+                Forms\Components\Select::make('bank_id')
+                    ->relationship('bank', 'name')
+                    ->preload()
+                    ->searchable()
+                    ->getSearchResultsUsing(fn(string $search): array => Bank::where('name', 'like', "%{$search}%")->limit(10)->pluck('name', 'id')->toArray())
+                    ->getOptionLabelUsing(fn($value): ?string => Bank::find($value)?->name),
                 Forms\Components\TextInput::make('cheque_number_start')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('cheque_number_end')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\Select::make('bank_id')
-                    ->searchable()
-                    ->getSearchResultsUsing(fn(string $search): array => Bank::where('name', 'like', "%{$search}%")->limit(10)->pluck('name', 'id')->toArray())
-                    ->getOptionLabelUsing(fn($value): ?string => Bank::find($value)?->name),
             ]);
     }
 

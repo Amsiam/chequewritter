@@ -37,13 +37,15 @@ class ChequeWriteResource extends Resource
                     ->getOptionLabelsUsing(fn(array $value): array => Bank::where('id', $value)->pluck('name', 'id')->toArray())
                     ->afterStateUpdated(fn(Set $set) => $set('cheque_id', null))
                     ->live(onBlur: true)
+                    ->preload()
                     ->required(),
                 Forms\Components\Select::make('cheque_id')
                     ->label('Cheque No')
                     ->searchable()
                     ->relationship('cheque', 'cheque_number')
-                    ->getSearchResultsUsing(fn(string $search, Get $get): array => Cheque::where('cheque_number', 'like', "%{$search}%")->where('bank_id', $get('bank_id'))->limit(50)->pluck('cheque_number', 'id')->toArray())
-                    ->getOptionLabelsUsing(fn(array $value, Get $get): array => Cheque::where('id', $value)->where('bank_id', $get('bank_id'))->pluck('cheque_number', 'id')->toArray())
+                    ->getSearchResultsUsing(fn(string $search, Get $get): array => Cheque::where('cheque_number', 'like', "%{$search}%")->where('bank_id', $get('bank_id'))->latest()->limit(50)->pluck('cheque_number', 'id')->toArray())
+                    ->getOptionLabelsUsing(fn(array $value, Get $get): array => Cheque::where('id', $value)->where('bank_id', $get('bank_id'))->pluck('cheque_number', 'id')->latest()->toArray())
+                    ->preload()
                     ->required(),
                 Forms\Components\Select::make('benificiary_id')
                     ->relationship('payee', 'name')
@@ -75,7 +77,7 @@ class ChequeWriteResource extends Resource
                 // Tables\Columns\TextColumn::make('user_id')
                 //     ->numeric()
                 //     ->sortable(),
-                Tables\Columns\TextColumn::make('payee')
+                Tables\Columns\TextColumn::make('payee.name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('amount')
                     ->numeric()
