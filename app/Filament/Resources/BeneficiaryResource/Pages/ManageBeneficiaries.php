@@ -21,7 +21,6 @@ class ManageBeneficiaries extends ManageRecords
             ),
             Actions\ImportAction::make()
                 ->label('Bulk Import')
-                ->job(false)
                 ->importer(\App\Filament\Imports\BeneficiaryImporter::class)
         ];
     }
