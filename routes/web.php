@@ -49,3 +49,7 @@ Route::get('/cheque-write/pdf/{id}', function ($id) {
 
     return $pdf->stream('cheque-write.pdf');
 })->name('cheque-write.pdf');
+
+Route::get('/cheque-write/pdf/download/', function ($id) {
+    return true;
+})->name('banks.export');

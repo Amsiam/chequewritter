@@ -18,7 +18,10 @@ class ManageBeneficiaries extends ManageRecords
                     $data['user_id'] = auth()->user()->id;
                     return $data;
                 }
-            )
+            ),
+            Actions\ImportAction::make()
+                ->label('Bulk Import')
+                ->importer(\App\Filament\Imports\BeneficiaryImporter::class)
         ];
     }
 }

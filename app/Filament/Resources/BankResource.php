@@ -19,6 +19,11 @@ class BankResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    public static function canAccess(): bool
+    {
+        return 'admin' === auth()->user()->role;
+    }
+
     public static function form(Form $form): Form
     {
         return $form
