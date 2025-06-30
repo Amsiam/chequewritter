@@ -16,7 +16,7 @@ class BankImporter extends Importer
         return [
             ImportColumn::make('name')
                 ->requiredMapping()
-                ->rules(['required']),
+                ->rules(['required', 'unique:banks,name']),
             ImportColumn::make('active')
                 ->requiredMapping()
                 ->boolean()
@@ -24,14 +24,14 @@ class BankImporter extends Importer
         ];
     }
 
+
     public function resolveRecord(): ?Bank
     {
-        // return Bank::firstOrNew([
-        //     // Update existing records, matching them by `$this->data['column_name']`
-        //     'email' => $this->data['email'],
-        // ]);
+        return Bank::firstOrNew([
+            'name' => $this->data['name'],
+        ]);
 
-        return new Bank();
+        // return new Bank();
     }
 
     public static function getCompletedNotificationBody(Import $import): string

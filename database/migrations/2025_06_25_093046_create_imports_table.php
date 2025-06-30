@@ -11,6 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
+        if (Schema::hasTable('imports')) {
+            Schema::dropIfExists('imports'); // Drop the table if it already exists
+        }
         Schema::create('imports', function (Blueprint $table) {
             $table->id();
             $table->timestamp('completed_at')->nullable();

@@ -11,6 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
+        if (Schema::hasTable('failed_import_rows')) {
+            Schema::dropIfExists('failed_import_rows'); // Drop the table if it already exists
+        }
         Schema::create('failed_import_rows', function (Blueprint $table) {
             $table->id();
             $table->json('data');
